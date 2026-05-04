@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Antrian Puskesmas Online</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0,
+maximum-scale=1.0, user-scablable=no">
+<body>
+    <div class="container">
+        <!-- STEP 1: START -->
+        <section id="step-start" class="card">
+            <h1 class="title-green"><span>✚</span> Bina Sehat</h1>
+            <p>Klik tombol di bawah untuk memulai pendaftaran antrian.</p>
+            <button onclick="showStep('step-input')">DAFTAR</button>
+            <button class="btn-secondary" onclick="window.close()">KELUAR</button>
+
+            <marquee behavior="scroll" direction="left" style="color: rgb(0, 0, 0); font-weight: bold; margin-top: auto; padding-bottom: 20px; width: 100%;">
+        Layanan Jam Operasional Puskesmas Bina Sehat: Senin - Jum'at | 07.00 - 22.00 WIB
+    </marquee>
+
+</body>
+        </section>
+
+        <!-- STEP 2: INPUT DATA -->
+        <section id="step-input" class="card hidden">
+            <h2>Input Data Pasien</h2>
+            <div class="form-group">
+                <label>Nama Pasien (Min. 4 Huruf):</label>
+                <input type="text" id="nama" placeholder="Contoh: Abid Rizky">
+            </div>
+            <div class="form-group">
+                <label>Umur Pasien (1-100):</label>
+                <input type="number" id="umur" placeholder="Contoh: 25">
+            </div>
+            <div id="error-box" class="error-panel hidden">
+                ⚠️ Nama min 4 huruf & Umur 1-100!
+            </div>
+            <button onclick="validateData()">LANJUT</button>
+        </section>
+
+        <!-- STEP 3: EMERGENCY CHECK -->
+        <section id="step-emergency" class="card hidden">
+            <h2>Cek Kondisi</h2>
+            <p>Apakah pasien dalam kondisi darurat / emergency?</p>
+            <div class="btn-group">
+                <button class="btn-danger" onclick="handleEmergency(true)">YA</button>
+                <button onclick="handleEmergency(false)">TIDAK</button>
+            </div>
+        </section>
+
+        <!-- STEP 4: PILIH KELUHAN (REVISI SESUAI GAMBAR) -->
+        <section id="step-gejala" class="card hidden">
+            <h1 class="title-green">PUSKESMAS ONLINE</h1>
+            <p id="display-date" class="date-text"></p>
+            
+            <div class="form-group">
+                <label>Pilih Keluhan Utama:</label>
+                <select id="keluhan-utama" onchange="updateGejalaList()">
+                    <option value="">-- Pilih Keluhan --</option>
+                    <option value="Sakit Kepala">Sakit Kepala</option>
+                    <option value="Mual">Mual / Gangguan Perut</option>
+                    <option value="Diare">Diare</option>
+                    <option value="Batuk Pilek">Batuk & Pilek</option>
+                    <option value="Luka Ringan">Luka Ringan</option>
+                </select>
+            </div>
+
+            <p class="info-text">Centang gejala yang dirasakan (Jika >= 5 akan masuk antrian Darurat):</p>
+            
+            <div id="gejala-wrapper" class="gejala-scrollbox">
+                <!-- Gejala akan muncul di sini berdasarkan pilihan dropdown -->
+                <p style="color: #888; font-style: italic;">Silakan pilih keluhan utama terlebih dahulu...</p>
+            </div>
+
+            <button class="btn-process" onclick="processGejala()">PROSES NOMOR ANTRIAN</button>
+            <button class="btn-link" onclick="showStep('step-emergency')">Kembali</button>
+        </section>
+
+        <!-- STEP 5: STRUK -->
+        <section id="step-receipt" class="card hidden">
+            <div id="receipt-area">
+                <div class="receipt-content">
+                    <h3>STRUK ANTRIAN</h3>
+                    <p id="res-date"></p>
+                    <hr>
+                    <p>Nama: <span id="res-nama"></span></p>
+                    <p>Umur: <span id="res-umur"></span> thn</p>
+                    <p>Poli: <span id="res-poli"></span></p>
+                    <div class="number-box">
+                        <h1 id="res-nomor"></h1>
+                    </div>
+                    <div id="qrcode"></div>
+                </div>
+            </div>
+            <button onclick="downloadPDF()">UNDUH PDF</button>
+            <button class="btn-secondary" onclick="location.reload()">SELESAI</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

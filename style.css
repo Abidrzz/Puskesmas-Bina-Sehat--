@@ -1,0 +1,128 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #121212;
+    color: #0fa80f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+
+      /* BACKGROUND TEMA RUANGAN MEDIS */
+    background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    width: 90%; /* Memberi sedikit ruang di pinggir layar HP */
+    max-width: 450px;
+    padding: 15px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 62px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.hidden { display: none; }
+
+.title-green {
+    color: #28a745; /* Tetap hijau sesuai gambar */
+    font-weight: bold;
+    font-size: 45px; /* Ubah angka ini (misal dari 24px ke 32px atau 40px) */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.date-text { font-size: 14px; color: #666; margin-bottom: 20px; }
+
+.form-group { text-align: left; margin-bottom: 15px; }
+label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; }
+
+select, input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+    font-size: 15px;
+}
+
+.info-text { font-size: 13px; text-align: left; color: #444; margin: 15px 0 10px 0; }
+
+.gejala-scrollbox {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    height: 200px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.gejala-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.gejala-item input { margin-right: 12px; transform: scale(1.2); }
+.gejala-item label { margin: 0; font-weight: normal; cursor: pointer; color: #333; }
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+button {
+    background-color: #28a745; /* Memberikan warna hijau pada semua tombol utama */
+    color: white; /* Mengubah warna tulisan tombol menjadi putih */
+}
+
+.btn-process { background: #28a745; color: rgb(255, 255, 255); }
+.btn-process:hover { background: #218838; }
+
+.btn-secondary { background: #6c757d; color: white; }
+.btn-danger { background: #dc3545; color: white; }
+.btn-link { background: none; color: #666; text-decoration: underline; font-size: 14px; }
+
+/* Struk Style */
+#receipt-area { background: white; padding: 20px; border-radius: 5px; margin-bottom: 15px; }
+.number-box h1 { font-size: 60px; margin: 20px 0; color: #000; }
+#qrcode { display: flex; justify-content: center; margin-top: 20px; }
+
+/* Pengaturan khusus untuk layar HP */
+@media (max-width: 768px) {
+    body {
+        /* Menggunakan 'cover' tapi memastikan posisi tetap di tengah agar tidak zoom berlebihan */
+        background-size: cover; 
+        background-position: center center;
+        background-attachment: scroll; /* Sangat penting untuk browser mobile */
+    }
+
+    .container {
+        width: 90%; /* Mengecilkan kotak agar tidak memenuhi layar HP */
+        padding: 10px;
+    }
+
+    .title-green {
+        font-size: 24px; /* Menyesuaikan ukuran teks di layar kecil */
+    }
+
+    .title-green span {
+        font-size: 30px; /* Menyesuaikan ukuran ikon plus di layar kecil */
+    }
+}
